@@ -9,20 +9,14 @@ jobs:
   build:
     name: 🔖 Bump tag
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Create tagging branch
-      uses: kangketikonlen/base-tagging@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  push:
-    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v2
-      - name: Build image
+    - uses: actions/checkout@v2
+    - name: Create tagging branch
+      uses: kangketikonlen/base-tagging@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
