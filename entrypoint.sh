@@ -22,23 +22,25 @@ flag=$(echo $MESSAGE | awk '{print match($0,"FIRST")}')
 if [ $flag -gt 0 ]; then
     last_tag="0.1.0"
     echo "Default tag: ${last_tag}"
+    push_tags last_tag
     exit 0
 else
     last_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
     echo "Last tag: ${last_tag}"
 fi
 
+echo "3) Creating next repository tags..."
 VERSI=$(echo $last_tag | grep -o '[^-]*$')
 
 MAJOR=$(echo $VERSI | cut -d. -f1)
 MINOR=$(echo $VERSI | cut -d. -f2)
 PATCH=$(echo $VERSI | cut -d. -f3)
 
-flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
-if [ $flag -gt 0 ]; then
-    NEXT_MAJOR=$MAJOR+1
-    echo "Perubahan di versi major ${NEXT_MAJOR}"
-fi
+# flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
+# if [ $flag -gt 0 ]; then
+#     NEXT_MAJOR=$MAJOR+1
+#     echo "Perubahan di versi major ${NEXT_MAJOR}"
+# fi
 
 # flag=$(echo $MESSAGE | awk '{print match($0,"FITUR")}')
 # if [ $flag -gt 0 ]; then
@@ -51,3 +53,8 @@ fi
 #     NEXT_PATCH=$PATCH+1
 #     echo "Perubahan di versi patch ${NEXT_PATCH}"
 # fi
+
+function push_tags() {
+    git tag -a $1 -m "Auto generated tags ${1}" "${GITHUB_SHA}" -f
+    git push --tags -f
+}
