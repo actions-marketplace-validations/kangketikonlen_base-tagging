@@ -2,7 +2,6 @@ name: 🔖 Create System Tags
 
 on:
   push:
-    branches: 'main'
 
 jobs:
   build:
