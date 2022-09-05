@@ -1,0 +1,18 @@
+name: 🔖 Create System Tags
+
+on:
+  push:
+    branches: 'main'
+
+jobs:
+  build:
+    name: 🔖 Bump tag
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create tagging branch
+      uses: kangketikonlen/base-tagging@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
