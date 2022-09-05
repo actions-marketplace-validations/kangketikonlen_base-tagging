@@ -45,10 +45,7 @@ if [ $flag -gt 0 ];then
     echo "Major ${major}+1"
 fi
 
-# if [[ "$MESSAGE" == *"MAJOR"* ]]; then
-# 	echo "Major ${major}+1"
-# fi
-
-# if [[ "$MESSAGE" == *"MINOR"* ]]; then
-# 	echo "Minor ${minor}+1"
-# fi
+flag=`echo $MESSAGE|awk '{print match($0,"MINOR")}'`;
+if [ $flag -gt 0 ];then
+    echo "Minor ${minor}+1"
+fi
