@@ -25,6 +25,7 @@ git pull
 git fetch origin --tags --quiet
 
 last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
+echo "Last tag: ${last_tag}";
 
 if [ -z "${last_tag}" ];then
     if [ "${INPUT_FLAG_BRANCH}" != false ];then
