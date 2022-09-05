@@ -21,7 +21,7 @@ echo $MESSAGE
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#FIRST")}')
 if [ $flag -gt 0 ]; then
-    last_tag="0.1.0"
+    last_tag="v0.1.0"
     echo "Default tag: ${last_tag}"
     push_tags $last_tag
 else
