@@ -18,7 +18,7 @@ git fetch origin --tags --quiet
 MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
 echo $MESSAGE
 
-flag=$(echo $MESSAGE | awk '{print match($0,"#FIRST")}')
+flag=$(echo $MESSAGE | awk '{print match($0,"FIRST")}')
 if [ $flag -gt 0 ]; then
     last_tag="0.1.0"
 else
