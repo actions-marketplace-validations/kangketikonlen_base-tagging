@@ -8,21 +8,3 @@ runs:
 branding:
   icon: 'tag'
   color: 'blue'
-
-inputs:
-  default_flag:
-    description: 'Flag indicating that the script should update the default tags.'
-    required: false
-    default: "#FIRST"
-  major_flag:
-    description: 'Flag indicating that the script should update and increase the major number on tag.'
-    required: false
-    default: "#PERUBAHAN"
-  minor_flag:
-    description: 'Flag indicating that the script should update and increase the minor number on tag.'
-    required: false
-    default: "#FITUR"
-  patch_flag:
-    description: 'Flag indicating that the script should update and increase the patch number on tag.'
-    required: false
-    default: "#PERBAIKAN"
