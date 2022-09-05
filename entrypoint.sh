@@ -43,5 +43,5 @@ elif [[ "$MESSAGE" == *\[minor\]* ]]; then
 	echo "Minor ${minor}+1"
 else
     patch=$(echo $VERSION | cut -d. -f3)
-	echo "${patch}"
+	echo "Patch ${patch}+1"
 fi
