@@ -43,7 +43,7 @@ PATCH=$(echo $VERSI | cut -d. -f3)
 
 flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
 if [ $flag -gt 0 ]; then
-    NEXT_MAJOR=$MAJOR+1
+    NEXT_MAJOR=$(($MAJOR + 1))
     echo "Perubahan di versi major ${NEXT_MAJOR}"
 fi
 
