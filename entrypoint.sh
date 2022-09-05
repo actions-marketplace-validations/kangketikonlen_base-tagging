@@ -49,6 +49,7 @@ flag=$(echo $MESSAGE | awk '{print match($0,"${INPUT_MAJOR_FLAG}")}')
 if [ $flag -gt 0 ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
     NEXT_TAGS="${NEXT_MAJOR}.${MINOR}.${PATCH}"
+    echo "Perubahan di versi major ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
 fi
 
@@ -56,6 +57,7 @@ flag=$(echo $MESSAGE | awk '{print match($0,"${INPUT_MINOR_FLAG}")}')
 if [ $flag -gt 0 ]; then
     NEXT_MINOR=$(($MINOR + 1))
     NEXT_TAGS="${MAJOR}.${NEXT_MINOR}.${PATCH}"
+    echo "Perubahan di versi minor ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
 fi
 
@@ -63,5 +65,6 @@ flag=$(echo $MESSAGE | awk '{print match($0,"${INPUT_PATCH_FLAG}")}')
 if [ $flag -gt 0 ]; then
     NEXT_PATCH=$(($PATCH + 1))
     NEXT_TAGS="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+    echo "Perubahan di versi patch ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
 fi
