@@ -32,8 +32,7 @@ if [ -z "${last_tag}" ];then
 fi
 
 VERSION=$(echo $last_tag | grep -o '[^-]*$')
-MESSAGE=$(git log -1 HEAD --pretty=format:%s)
-MESSAGE=${MESSAGE^^}
+MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
 
 echo $MESSAGE
 
