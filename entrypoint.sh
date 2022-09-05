@@ -36,17 +36,14 @@ MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
 
 echo $MESSAGE
 
-KEY_MAJOR="MAJOR"
-KEY_MINOR="MINOR"
-
 major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
 patch=$(echo $VERSION | cut -d. -f3)
 
-if [[ "$MESSAGE" == *"$KEY_MAJOR"* ]]; then
+if [[ "$MESSAGE" =~ .*"MAJOR".* ]]; then
 	echo "Major ${major}+1"
-elif [[ "$MESSAGE" == *"$KEY_MINOR"* ]]; then
+fi
+
+if [[ "$MESSAGE" =~ .*"MINOR".* ]]; then
 	echo "Minor ${minor}+1"
-else
-	echo "Patch ${patch}+1"
 fi
