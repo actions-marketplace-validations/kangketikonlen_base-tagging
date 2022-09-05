@@ -1,0 +1,10 @@
+name: 'Base Tagging'
+description: 'My custom auto tagging branch'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'tag'
+  color: 'blue'
