@@ -22,6 +22,7 @@ flag=$(echo $MESSAGE | awk '{print match($0,"FIRST")}')
 if [ $flag -gt 0 ]; then
     last_tag="0.1.0"
     echo "Default tag: ${last_tag}"
+    exit 1
 else
     last_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
     echo "Last tag: ${last_tag}"
