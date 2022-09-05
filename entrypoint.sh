@@ -40,10 +40,15 @@ major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
 patch=$(echo $VERSION | cut -d. -f3)
 
-if [[ "$MESSAGE" == *"MAJOR"* ]]; then
-	echo "Major ${major}+1"
+if grep -q "MAJOR" <<< "$MESSAGE"
+then
+  echo "Major ${major}+1"
 fi
 
-if [[ "$MESSAGE" == *"MINOR"* ]]; then
-	echo "Minor ${minor}+1"
-fi
+# if [[ "$MESSAGE" == *"MAJOR"* ]]; then
+# 	echo "Major ${major}+1"
+# fi
+
+# if [[ "$MESSAGE" == *"MINOR"* ]]; then
+# 	echo "Minor ${minor}+1"
+# fi
