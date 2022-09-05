@@ -42,7 +42,7 @@ MAJOR=$(echo $VERSI | cut -d. -f1)
 MINOR=$(echo $VERSI | cut -d. -f2)
 PATCH=$(echo $VERSI | cut -d. -f3)
 
-flag=$(echo $MESSAGE | awk '{print match($0,"#BASE")}')
+flag=$(echo $MESSAGE | awk '{print match($0,"MERGE")}')
 if [ $flag -gt 0 ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
     LATEST_TAG="${NEXT_MAJOR}.${MINOR}.${PATCH}"
