@@ -40,12 +40,12 @@ major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
 patch=$(echo $VERSION | cut -d. -f3)
 
-flag=`echo $MESSAGE|awk '{print match($0,"MAJOR")}'`;
+flag=`echo $MESSAGE|awk '{print match($0,"#MAJOR")}'`;
 if [ $flag -gt 0 ];then
     echo "Major ${major}+1"
 fi
 
-flag=`echo $MESSAGE|awk '{print match($0,"MINOR")}'`;
+flag=`echo $MESSAGE|awk '{print match($0,"#MINOR")}'`;
 if [ $flag -gt 0 ];then
     echo "Minor ${minor}+1"
 fi
