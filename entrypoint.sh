@@ -32,12 +32,16 @@ if [ -z "${last_tag}" ];then
     echo "Default Last tag: ${last_tag}";
 fi
 
+VERSION=$(echo $last_tag | grep -o '[^-]*$')
 MESSAGE=$(git log -1 HEAD --pretty=format:%s)
 
 if [[ "$MESSAGE" == *\[major\]* ]]; then
-	echo "increase first digit"
+    major=$(echo $VERSION | cut -d. -f1)
+	echo "${major}+1"
 elif [[ "$MESSAGE" == *\[minor\]* ]]; then
-	echo "increase middle digit"
+    minor=$(echo $VERSION | cut -d. -f2)
+	echo "${minor}"
 else
-	echo "increase last digit"
+    patch=$(echo $VERSION | cut -d. -f3)
+	echo "${patch}"
 fi
