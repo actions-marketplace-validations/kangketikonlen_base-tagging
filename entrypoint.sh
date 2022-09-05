@@ -21,7 +21,6 @@ echo "1) Setting up git machine..."
 git_setup
 
 echo "2) Updating repository tags..."
-git pull
 git fetch origin --tags --quiet
 
 last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
@@ -34,15 +33,20 @@ fi
 
 VERSION=$(echo $last_tag | grep -o '[^-]*$')
 MESSAGE=$(git log -1 HEAD --pretty=format:%s)
+MESSAGE=${MESSAGE^^}
+
 echo $MESSAGE
+
+KEY_MAJOR="MAJOR"
+KEY_MINOR="MINOR"
 
 major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
 patch=$(echo $VERSION | cut -d. -f3)
 
-if [[ "$MESSAGE" == *\[major\]* ]]; then
+if [[ "$MESSAGE" == *"$KEY_MAJOR"* ]]; then
 	echo "Major ${major}+1"
-elif [[ "$MESSAGE" == *\[minor\]* ]]; then
+elif [[ "$MESSAGE" == *"$KEY_MINOR"* ]]; then
 	echo "Minor ${minor}+1"
 else
 	echo "Patch ${patch}+1"
