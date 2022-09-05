@@ -34,14 +34,16 @@ fi
 
 VERSION=$(echo $last_tag | grep -o '[^-]*$')
 MESSAGE=$(git log -1 HEAD --pretty=format:%s)
+echo $MESSAGE
+
+major=$(echo $VERSION | cut -d. -f1)
+minor=$(echo $VERSION | cut -d. -f2)
+patch=$(echo $VERSION | cut -d. -f3)
 
 if [[ "$MESSAGE" == *\[major\]* ]]; then
-    major=$(echo $VERSION | cut -d. -f1)
 	echo "Major ${major}+1"
 elif [[ "$MESSAGE" == *\[minor\]* ]]; then
-    minor=$(echo $VERSION | cut -d. -f2)
 	echo "Minor ${minor}+1"
 else
-    patch=$(echo $VERSION | cut -d. -f3)
 	echo "Patch ${patch}+1"
 fi
