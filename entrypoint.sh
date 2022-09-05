@@ -27,7 +27,7 @@ last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
 echo "Last tag: ${last_tag}";
 
 if [ -z "${last_tag}" ];then
-    last_tag="v0.1.0";
+    last_tag="0.1.0";
     echo "Default Last tag: ${last_tag}";
 fi
 
