@@ -41,11 +41,11 @@ MAJOR=$(echo $VERSI | cut -d. -f1)
 MINOR=$(echo $VERSI | cut -d. -f2)
 PATCH=$(echo $VERSI | cut -d. -f3)
 
-# flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
-# if [ $flag -gt 0 ]; then
-#     NEXT_MAJOR=$MAJOR+1
-#     echo "Perubahan di versi major ${NEXT_MAJOR}"
-# fi
+flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
+if [ $flag -gt 0 ]; then
+    NEXT_MAJOR=$MAJOR+1
+    echo "Perubahan di versi major ${NEXT_MAJOR}"
+fi
 
 # flag=$(echo $MESSAGE | awk '{print match($0,"FITUR")}')
 # if [ $flag -gt 0 ]; then
