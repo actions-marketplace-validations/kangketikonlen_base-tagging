@@ -28,10 +28,16 @@ last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
 echo "Last tag: ${last_tag}";
 
 if [ -z "${last_tag}" ];then
-    if [ "${INPUT_FLAG_BRANCH}" != false ];then
-        last_tag="${INPUT_PREV_TAG}${branch}.1.0";
-    else
-        last_tag="${INPUT_PREV_TAG}0.1.0";
-    fi
+    last_tag="v0.1.0";
     echo "Default Last tag: ${last_tag}";
+fi
+
+MESSAGE=$(git log -1 HEAD --pretty=format:%s)
+
+if [[ "$MESSAGE" == *\[major\]* ]]; then
+	echo "increase first digit"
+elif [[ "$MESSAGE" == *\[minor\]* ]]; then
+	echo "increase middle digit"
+else
+	echo "increase last digit"
 fi
