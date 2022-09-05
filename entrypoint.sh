@@ -37,10 +37,10 @@ MESSAGE=$(git log -1 HEAD --pretty=format:%s)
 
 if [[ "$MESSAGE" == *\[major\]* ]]; then
     major=$(echo $VERSION | cut -d. -f1)
-	echo "${major}+1"
+	echo "Major ${major}+1"
 elif [[ "$MESSAGE" == *\[minor\]* ]]; then
     minor=$(echo $VERSION | cut -d. -f2)
-	echo "${minor}"
+	echo "Minor ${minor}+1"
 else
     patch=$(echo $VERSION | cut -d. -f3)
 	echo "${patch}"
