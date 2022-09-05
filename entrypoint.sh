@@ -46,6 +46,8 @@ if [ $flag -gt 0 ]; then
     NEXT_TAGS="v${NEXT_MAJOR}.${MINOR}.${PATCH}"
     echo "There is major update. Latest tags: ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
+else
+    echo "No major update."
 fi
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#FITUR")}')
@@ -54,6 +56,8 @@ if [ $flag -gt 0 ]; then
     NEXT_TAGS="v${MAJOR}.${NEXT_MINOR}.${PATCH}"
     echo "There is minor update. Latest tags: ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
+else
+    echo "No minor update."
 fi
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#PERBAIKAN")}')
@@ -62,4 +66,6 @@ if [ $flag -gt 0 ]; then
     NEXT_TAGS="v${MAJOR}.${MINOR}.${NEXT_PATCH}"
     echo "There is patch update. Latest tags: ${NEXT_TAGS}"
     push_tags $NEXT_TAGS
+else
+    echo "No patch update."
 fi
