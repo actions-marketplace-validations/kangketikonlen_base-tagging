@@ -9,7 +9,7 @@ LABEL "repository"="https://github.com/kangketikonlen/base-tagging"
 LABEL "homepage"="https://github.com/kangketikonlen/base-tagging"
 LABEL "maintainer"="Gilang Pratama <pratamapriadi96@gmail.com>"
 
-RUN apk add coreutils
+RUN apk add coreutils bash
 
 COPY entrypoint.sh /entrypoint.sh
 

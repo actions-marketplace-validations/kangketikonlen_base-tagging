@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 # Set up .netrc file with GitHub credentials
@@ -40,10 +40,10 @@ major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
 patch=$(echo $VERSION | cut -d. -f3)
 
-if grep -q "MAJOR" <<< "$MESSAGE"; then
-  echo "Major ${major}+1"
-fi
-
-if grep -q "MINOR" <<< "$MESSAGE"; then
+if [[ "$MESSAGE" == *"MAJOR"* ]]; then
+	echo "Major ${major}+1"
+elif [[ "$MESSAGE" == *"MINOR"* ]]; then
 	echo "Minor ${minor}+1"
+else
+	echo "Patch ${patch}+1"
 fi
