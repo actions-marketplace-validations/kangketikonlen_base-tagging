@@ -1,5 +1,6 @@
 on:
   push:
+    branch: "main"
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
@@ -9,9 +10,6 @@ jobs:
   build:
     name: 🔖 Bump tag
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
     - uses: actions/checkout@v2
