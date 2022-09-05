@@ -21,6 +21,7 @@ echo "1) Setting up git machine..."
 git_setup
 
 echo "2) Updating repository tags..."
+git pull
 git fetch origin --tags --quiet
 
 last_tag=`git describe --tags $(git rev-list --tags --max-count=1)`
