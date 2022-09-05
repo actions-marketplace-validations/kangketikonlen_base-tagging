@@ -44,17 +44,20 @@ PATCH=$(echo $VERSI | cut -d. -f3)
 flag=$(echo $MESSAGE | awk '{print match($0,"PERUBAHAN")}')
 if [ $flag -gt 0 ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
-    echo "Perubahan di versi major ${NEXT_MAJOR}"
+    NEXT_TAGS="${NEXT_MAJOR}.${MINOR}.${PATCH}"
+    echo "Perubahan di versi major ${NEXT_TAGS}"
 fi
 
-# flag=$(echo $MESSAGE | awk '{print match($0,"FITUR")}')
-# if [ $flag -gt 0 ]; then
-#     NEXT_MINOR=$MINOR+1
-#     echo "Perubahan di versi minor ${NEXT_MINOR}"
-# fi
+flag=$(echo $MESSAGE | awk '{print match($0,"FITUR")}')
+if [ $flag -gt 0 ]; then
+    NEXT_MINOR=$(($MINOR + 1))
+    NEXT_TAGS="${MAJOR}.${NEXT_MINOR}.${PATCH}"
+    echo "Perubahan di versi minor ${NEXT_TAGS}"
+fi
 
-# flag=$(echo $MESSAGE | awk '{print match($0,"PERBAIKAN")}')
-# if [ $flag -gt 0 ]; then
-#     NEXT_PATCH=$PATCH+1
-#     echo "Perubahan di versi patch ${NEXT_PATCH}"
-# fi
+flag=$(echo $MESSAGE | awk '{print match($0,"PERBAIKAN")}')
+if [ $flag -gt 0 ]; then
+    NEXT_PATCH=$(($PATCH + 1))
+    NEXT_TAGS="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+    echo "Perubahan di versi patch ${NEXT_TAGS}"
+fi
