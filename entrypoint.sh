@@ -15,19 +15,19 @@ git_setup
 echo "2) Updating repository tags..."
 git fetch origin --tags --quiet
 
-last_tag=$(git describe --all $(git rev-list --tags --max-count=1))
+MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
+echo $MESSAGE
 
-if [ -z "${last_tag}" ]; then
+flag=$(echo $MESSAGE | awk '{print match($0,"#FIRST")}')
+if [ $flag -gt 0 ]; then
     last_tag="0.1.0"
-    echo "Default Last tag: ${last_tag}"
 else
-    echo "Last tag: ${last_tag}"
+    last_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
 fi
 
-VERSION=$(echo $last_tag | grep -o '[^-]*$')
-MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
+echo "Last tag: ${last_tag}"
 
-echo $MESSAGE
+VERSION=$(echo $last_tag | grep -o '[^-]*$')
 
 major=$(echo $VERSION | cut -d. -f1)
 minor=$(echo $VERSION | cut -d. -f2)
