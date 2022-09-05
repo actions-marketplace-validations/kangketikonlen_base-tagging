@@ -39,20 +39,20 @@ PATCH=$(echo $VERSI | cut -d. -f3)
 flag=$(echo $MESSAGE | awk '{print match($0,"#BASE")}')
 if [ $flag -gt 0 ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
-    NEXT_TAGS="${NEXT_MAJOR}.${MINOR}.${PATCH}"
+    NEXT_TAGS="v${NEXT_MAJOR}.${MINOR}.${PATCH}"
     push_tags $NEXT_TAGS
 fi
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#FITUR")}')
 if [ $flag -gt 0 ]; then
     NEXT_MINOR=$(($MINOR + 1))
-    NEXT_TAGS="${MAJOR}.${NEXT_MINOR}.${PATCH}"
+    NEXT_TAGS="v${MAJOR}.${NEXT_MINOR}.${PATCH}"
     push_tags $NEXT_TAGS
 fi
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#PERBAIKAN")}')
 if [ $flag -gt 0 ]; then
     NEXT_PATCH=$(($PATCH + 1))
-    NEXT_TAGS="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+    NEXT_TAGS="v${MAJOR}.${MINOR}.${NEXT_PATCH}"
     push_tags $NEXT_TAGS
 fi
