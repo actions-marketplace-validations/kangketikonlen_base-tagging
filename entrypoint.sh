@@ -52,7 +52,7 @@ MAJOR=$(echo $VERSI | cut -d. -f1)
 PATCH=$(echo $VERSI | cut -d. -f2)
 
 # Check branch to define wich number will be increased.
-if [ BRANCH == "main" ]; then
+if [ $BRANCH == "main" ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
     LATEST_TAG="${NEXT_MAJOR}.0"
     echo "There is major update. Latest tags: ${LATEST_TAG}"
