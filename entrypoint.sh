@@ -34,7 +34,7 @@ fi
 # Use default tags if commit message contain #FIRST keyword
 flag=$(echo $MESSAGE | awk '{print match($0,"#FIRST")}')
 if [ $flag -gt 0 ]; then
-    LAST_TAG="v1.0"
+    LAST_TAG="1.0"
     echo "Using default tag: ${LAST_TAG}"
     push_tags $LAST_TAG
 else
