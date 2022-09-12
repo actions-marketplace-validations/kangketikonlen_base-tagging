@@ -16,8 +16,9 @@ echo "Start process..."
 git_setup
 git fetch origin --tags --quiet
 
-MESSAGE=$(git log -1 HEAD --pretty=format:%s | tr '[:lower:]' '[:upper:]')
-echo "Using commit message: ${MESSAGE}"
+MESSAGE=$(git log -1 HEAD --pretty=format:%s)
+BRANCH=$(git symbolic-ref --short HEAD)
+echo "Using commit message: ${MESSAGE} on branch ${BRANCH}"
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#TRY")}')
 if [ $flag -gt 0 ]; then
@@ -27,7 +28,7 @@ fi
 
 flag=$(echo $MESSAGE | awk '{print match($0,"#FIRST")}')
 if [ $flag -gt 0 ]; then
-    LAST_TAG="0.1.0"
+    LAST_TAG="1.0"
     echo "Default tag: ${LAST_TAG}"
     push_tags $LAST_TAG
 else
@@ -39,35 +40,16 @@ LAST_TAG=$(echo $LAST_TAG | sed -e 's/^v//')
 VERSI=$(echo $LAST_TAG | grep -o '[^-]*$')
 
 MAJOR=$(echo $VERSI | cut -d. -f1)
-MINOR=$(echo $VERSI | cut -d. -f2)
-PATCH=$(echo $VERSI | cut -d. -f3)
+PATCH=$(echo $VERSI | cut -d. -f2)
 
-flag=$(echo $MESSAGE | awk '{print match($0,"MERGE")}')
-if [ $flag -gt 0 ]; then
+if [ BRANCH == "main" ]; then
     NEXT_MAJOR=$(($MAJOR + 1))
-    LATEST_TAG="${NEXT_MAJOR}.${MINOR}.${PATCH}"
+    LATEST_TAG="${NEXT_MAJOR}.0"
     echo "There is major update. Latest tags: ${LATEST_TAG}"
     push_tags $LATEST_TAG
 else
-    echo "No major update."
-fi
-
-flag=$(echo $MESSAGE | awk '{print match($0,"#FITUR")}')
-if [ $flag -gt 0 ]; then
-    NEXT_MINOR=$(($MINOR + 1))
-    LATEST_TAG="${MAJOR}.${NEXT_MINOR}.${PATCH}"
-    echo "There is minor update. Latest tags: ${LATEST_TAG}"
-    push_tags $LATEST_TAG
-else
-    echo "No minor update."
-fi
-
-flag=$(echo $MESSAGE | awk '{print match($0,"#PERBAIKAN")}')
-if [ $flag -gt 0 ]; then
     NEXT_PATCH=$(($PATCH + 1))
-    LATEST_TAG="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+    LATEST_TAG="${MAJOR}.${NEXT_PATCH}"
     echo "There is patch update. Latest tags: ${LATEST_TAG}"
     push_tags $LATEST_TAG
-else
-    echo "No patch update."
 fi
