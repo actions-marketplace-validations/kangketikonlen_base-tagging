@@ -18,7 +18,10 @@ push_tags() {
 remove_old_tags() {
     cd /app
     npm install
-    echo "$GITHUB_CONTEXT"
+    echo "GH_TOKEN=${GH_TOKEN}" >>.env
+    echo "REPO_NAME=${REPO_NAME}" >>.env
+    echo "REPO_OWNER=${REPO_OWNER}" >>.env
+    cat .env
     exit 0
 }
 
