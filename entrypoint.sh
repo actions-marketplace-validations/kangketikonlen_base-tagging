@@ -12,6 +12,12 @@ git_setup() {
 push_tags() {
     git tag -a "v${1}" -m "Auto generated tags ${1}" "${GITHUB_SHA}" -f
     git push --tags -f
+}
+
+# Remove old tags function
+remove_old_tags() {
+    cd /app
+    npm install
     exit 0
 }
 
@@ -67,5 +73,4 @@ fi
 
 # Remove old tags
 echo "Start remove old tags..."
-cd /app
-npm install
+remove_old_tags
