@@ -18,7 +18,7 @@ push_tags() {
 remove_old_tags() {
     cd /app
     npm install
-    echo $First_Name
+    echo "$GITHUB_CONTEXT"
     exit 0
 }
 

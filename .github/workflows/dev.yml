@@ -18,5 +18,5 @@ jobs:
     - name: Create tag
       uses: kangketikonlen/base-tagging@devs
       env:
-        First_Name: Mona
+        GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
