@@ -21,7 +21,7 @@ remove_old_tags() {
     echo "GH_TOKEN=${GH_TOKEN}" >>.env
     echo "REPO_NAME=${REPO_NAME}" >>.env
     echo "REPO_OWNER=${REPO_OWNER}" >>.env
-    cat .env
+    node index.js
     exit 0
 }
 
