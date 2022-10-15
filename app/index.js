@@ -35,11 +35,13 @@ async function get_tags() {
 async function get_image_version() {
 	try {
 		const response = await octokit.request(
-			'GET /user/packages/{package_type}/{package_name}',
+			'GET /users/{username}/packages/{package_type}/{package_name}/versions',
 			{
 				package_type: 'container',
 				package_name: process.env.REPO_NAME,
-			})
+				username: process.env.REPO_OWNER,
+			}
+		)
 		response.data.forEach(delete_image_version);
 	} catch (error) {
 		console.log(error.response.data.message);
@@ -85,11 +87,14 @@ async function delete_image_version(item, index) {
 	try {
 		if (index > keep) {
 			const response = await octokit.request(
-				'DELETE /user/packages/{package_type}/{package_name}',
+				'DELETE /users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}',
 				{
 					package_type: 'container',
 					package_name: process.env.REPO_NAME,
-				})
+					username: process.env.REPO_OWNER,
+					package_version_id: item.id
+				}
+			)
 			console.log(index + " " + item.metadata.package_type + " " + item.metadata.container.tags[0] + " deleted with return code: " + response.status);
 		} else {
 			console.log(index + " " + item.metadata.package_type + " " + item.metadata.container.tags[0] + " skipped");
