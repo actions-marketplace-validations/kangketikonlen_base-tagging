@@ -3,6 +3,7 @@ set -eu
 
 # Setting up github function
 git_setup() {
+    git config --global --add safe.directory /github/workspace
     git config --global user.email "actions@github.com"
     git config --global user.name "Base tagging gitHub action"
 }
@@ -11,6 +12,17 @@ git_setup() {
 push_tags() {
     git tag -a "v${1}" -m "Auto generated tags ${1}" "${GITHUB_SHA}" -f
     git push --tags -f
+}
+
+# Remove old tags function
+remove_old_tags() {
+    cd /app
+    npm install
+    echo "GH_TOKEN=${GH_TOKEN}" >>.env
+    echo "REPO_NAME=${REPO_NAME}" >>.env
+    echo "REPO_OWNER=${REPO_OWNER}" >>.env
+    echo "REPO_TYPE=${REPO_TYPE}" >>.env
+    node index.js
     exit 0
 }
 
@@ -63,3 +75,7 @@ else
     echo "There is patch update. Latest tags: ${LATEST_TAG}"
     push_tags $LATEST_TAG
 fi
+
+# Remove old tags
+echo "Start remove old tags..."
+remove_old_tags
