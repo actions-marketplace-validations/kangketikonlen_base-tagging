@@ -64,3 +64,8 @@ else
     echo "There is patch update. Latest tags: ${LATEST_TAG}"
     push_tags $LATEST_TAG
 fi
+
+# Remove old tags
+echo "Start remove old tags..."
+cd /app
+npm install
