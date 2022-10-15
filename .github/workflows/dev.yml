@@ -1,12 +1,12 @@
 on:
   push:
     branches: 
-      - "devs"
+      - "dev*"
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
 
-name: 🔖 Create System Tags
+name: 🔖 Create System Tags for Devs
 jobs:
   build:
     name: 🔖 Bump tag
