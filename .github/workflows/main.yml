@@ -18,7 +18,10 @@ jobs:
     - name: Create tag
       uses: kangketikonlen/base-tagging@main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_NAME: ${{ github.event.repository.name }}
+        REPO_OWNER: ${{ github.event.repository.owner.name }}
+        REPO_TYPE: ${{ github.event.repository.owner.type }}
 
     - name: Build image
       run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
