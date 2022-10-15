@@ -18,7 +18,7 @@ push_tags() {
 remove_old_tags() {
     cd /app
     npm install
-    echo $GITHUB_TOKEN
+    echo $First_Name
     exit 0
 }
 
