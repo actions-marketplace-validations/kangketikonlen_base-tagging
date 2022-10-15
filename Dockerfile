@@ -1,4 +1,4 @@
-FROM alpine/git:1.0.7
+FROM alpine/git:2.36.2
 
 LABEL "com.github.actions.name"="Base Tagging"
 LABEL "com.github.actions.description"="My custom auto tagging branch"
