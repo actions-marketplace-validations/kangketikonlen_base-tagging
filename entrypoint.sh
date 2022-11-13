@@ -21,7 +21,8 @@ remove_old_tags() {
     echo "REPO_NAME=${REPO_NAME}" >>.env
     echo "REPO_OWNER=${REPO_OWNER}" >>.env
     echo "REPO_TYPE=${REPO_TYPE}" >>.env
-    if [-z ${VERSION_KEEP}] then
+    if [ ! -z ${VERSION_KEEP}] 
+    then
         echo "VERSION_KEEP=${VERSION_KEEP}" >>.env
     else
         echo "VERSION_KEEP=1" >>.env
