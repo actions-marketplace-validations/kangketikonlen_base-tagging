@@ -21,11 +21,7 @@ remove_old_tags() {
     echo "REPO_NAME=${REPO_NAME}" >>.env
     echo "REPO_OWNER=${REPO_OWNER}" >>.env
     echo "REPO_TYPE=${REPO_TYPE}" >>.env
-    if [[ -z "$VERSION_KEEP" ]]; then
-        echo "VERSION_KEEP=${VERSION_KEEP}" >>.env
-    else
-        echo "VERSION_KEEP=1" >>.env
-    fi
+    echo "PRESERVE_VERSION=${PRESERVE_VERSION}" >>.env
     echo "PERSONAL_TOKEN=${PERSONAL_TOKEN}" >>.env
     node index.js
     exit 0

@@ -6,7 +6,7 @@ const octokit = new Octokit({
 	auth: process.env.PERSONAL_TOKEN
 })
 
-const keep = process.env.VERSION_KEEP;
+const version_keep = process.env.PRESERVE_VERSION - 1;
 
 async function main() {
 	await get_tags();
@@ -65,7 +65,7 @@ async function get_image_org_version() {
 async function delete_tags(item, index) {
 	try {
 		var refs = item.ref.replace("refs/", "");
-		if (index > keep) {
+		if (index > version_keep) {
 			const response = await octokit.request('DELETE /repos/{owner}/{repo}/git/refs/{ref}', {
 				owner: process.env.REPO_OWNER,
 				repo: process.env.REPO_NAME,
@@ -82,7 +82,7 @@ async function delete_tags(item, index) {
 
 async function delete_image_version(item, index) {
 	try {
-		if (index > keep) {
+		if (index > version_keep) {
 			const response = await octokit.request(
 				'DELETE /users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}',
 				{
@@ -103,7 +103,7 @@ async function delete_image_version(item, index) {
 
 async function delete_image_org_version(item, index) {
 	try {
-		if (index > keep) {
+		if (index > version_keep) {
 			const response = await octokit.request('DELETE /orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}', {
 				package_type: 'container',
 				package_name: process.env.REPO_NAME,
