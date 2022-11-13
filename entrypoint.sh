@@ -25,6 +25,7 @@ remove_old_tags() {
         echo "VERSION_KEEP=${VERSION_KEEP}" >>.env
     else
         echo "VERSION_KEEP=1" >>.env
+    fi
     echo "PERSONAL_TOKEN=${PERSONAL_TOKEN}" >>.env
     node index.js
     exit 0
