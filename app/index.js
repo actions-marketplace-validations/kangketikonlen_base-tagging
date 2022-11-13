@@ -1,6 +1,3 @@
-// Octokit.js
-// https://github.com/octokit/core.js#readme
-
 require('dotenv').config()
 
 const { Octokit } = require("octokit");
@@ -9,7 +6,7 @@ const octokit = new Octokit({
 	auth: process.env.PERSONAL_TOKEN
 })
 
-const keep = process.env.VERSION_KEEP;
+const keep = process.env.VERSION_KEEP || 1;
 
 async function main() {
 	await get_tags();

@@ -21,5 +21,5 @@ jobs:
         REPO_NAME: ${{ github.event.repository.name }}
         REPO_TYPE: ${{ github.event.repository.owner.type }}
         REPO_OWNER: ${{ github.event.repository.owner.name }}
-        VERSION_KEEP: 5
+        # VERSION_KEEP: 5
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
