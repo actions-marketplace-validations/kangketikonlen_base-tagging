@@ -9,7 +9,7 @@ const octokit = new Octokit({
 	auth: process.env.PERSONAL_TOKEN
 })
 
-const keep = 1;
+const keep = process.env.VERSION_KEEP;
 
 async function main() {
 	await get_tags();
