@@ -18,10 +18,10 @@ push_tags() {
 remove_old_tags() {
     cd /app
     npm install
-    echo "GH_TOKEN=${GH_TOKEN}" >>.env
     echo "REPO_NAME=${REPO_NAME}" >>.env
     echo "REPO_OWNER=${REPO_OWNER}" >>.env
     echo "REPO_TYPE=${REPO_TYPE}" >>.env
+    echo "PERSONAL_TOKEN=${PERSONAL_TOKEN}" >>.env
     node index.js
     exit 0
 }

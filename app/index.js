@@ -6,7 +6,7 @@ require('dotenv').config()
 const { Octokit } = require("octokit");
 
 const octokit = new Octokit({
-	auth: process.env.GH_TOKEN
+	auth: process.env.PERSONAL_TOKEN
 })
 
 const keep = 1;
