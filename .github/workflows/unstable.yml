@@ -1,7 +1,7 @@
 on:
   push:
     branches: 
-      - "unstable"
+      - "main"
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create tag
-      uses: kangketikonlen/base-tagging@v1.4
+      uses: kangketikonlen/base-tagging@main
       env:
         REPO_NAME: ${{ github.event.repository.name }}
         REPO_TYPE: ${{ github.event.repository.owner.type }}
