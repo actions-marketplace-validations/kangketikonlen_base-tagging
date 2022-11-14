@@ -19,6 +19,7 @@ jobs:
       uses: kangketikonlen/base-tagging@unstable
       env:
         REPO_NAME: ${{ github.event.repository.name }}
-        REPO_OWNER: ${{ github.event.repository.owner.name }}
         REPO_TYPE: ${{ github.event.repository.owner.type }}
+        REPO_OWNER: ${{ github.event.repository.owner.name }}
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        PRESERVE_VERSION: 1

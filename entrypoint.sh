@@ -17,10 +17,11 @@ push_tags() {
 # Remove old tags function
 remove_old_tags() {
     cd /app
-    npm install
+    npm install -s
     echo "REPO_NAME=${REPO_NAME}" >>.env
     echo "REPO_OWNER=${REPO_OWNER}" >>.env
     echo "REPO_TYPE=${REPO_TYPE}" >>.env
+    echo "PRESERVE_VERSION=${PRESERVE_VERSION}" >>.env
     echo "PERSONAL_TOKEN=${PERSONAL_TOKEN}" >>.env
     node index.js
     exit 0
