@@ -1,12 +1,12 @@
 on:
   push:
     branches: 
-      - "dev*"
+      - "unstable"
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
 
-name: 🔖 Create System Tags for Devs
+name: 🔖 Create System Tags Unstable
 jobs:
   build:
     name: 🔖 Bump tag
@@ -16,9 +16,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create tag
-      uses: kangketikonlen/base-tagging@stable
+      uses: kangketikonlen/base-tagging@v1.4
       env:
         REPO_NAME: ${{ github.event.repository.name }}
-        REPO_OWNER: ${{ github.event.repository.owner.name }}
         REPO_TYPE: ${{ github.event.repository.owner.type }}
+        REPO_OWNER: ${{ github.event.repository.owner.name }}
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        PRESERVE_VERSION: 1
